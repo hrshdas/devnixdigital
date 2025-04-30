@@ -82,6 +82,8 @@ section {
 }
 .hero-button {
   background: linear-gradient(to right, #a855f7, #facc15);
+  position: relative;
+  z-index: 20;
   padding: 12px 24px;
   border-radius: 9999px;
   font-weight: bold;
