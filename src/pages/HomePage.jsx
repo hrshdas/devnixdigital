@@ -30,22 +30,22 @@ export default function HomePage() {
           A results-driven agency helping modern brands grow with innovative strategy, branding, and marketing solutions tailored for today's digital landscape.
         </p>
         <button
-          onClick={() => setShowForm(!showForm)}
-          className="hero-button bg-gradient-to-r from-purple-500 to-yellow-400 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transform transition-all duration-500"
-        >
-          Let's Collaborate
-        </button>
-        
-        {showForm && (
+  onClick={() => setShowForm(!showForm)}
+  className="hero-button bg-gradient-to-r from-purple-500 to-yellow-400 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transform transition-all duration-500"
+>
+  Let's Collaborate
+</button>
+
+{showForm && (
   <div 
-    className="form-container mt-10 flex flex-col items-center animate-slideDown"
+    className="form-container mt-10 flex flex-col items-center px-4 sm:px-6 animate-slideDown" // 🔧 Add responsive horizontal padding
   >
-    <h3 className="form-heading text-3xl font-extrabold mb-6 text-gray-800">Start a Project</h3>
-    
+    <h3 className="form-heading text-3xl font-extrabold mb-6 text-gray-800 text-center">Start a Project</h3> {/* 🔧 Center title on mobile */}
+
     <form 
       action="https://formspree.io/f/mvgazvle" 
       method="POST"
-      className="form-fields flex flex-col items-center gap-6 w-full max-w-lg bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-2xl"
+      className="form-fields flex flex-col items-center gap-6 w-full max-w-lg bg-white/70 backdrop-blur-md p-6 sm:p-8 rounded-2xl shadow-2xl" // 🔧 Use sm:p-8 to scale up padding on larger screens
     >
       <input 
         type="text" 
