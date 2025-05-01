@@ -29,12 +29,14 @@ export default function HomePage() {
         <p className="hero-subtext text-lg text-gray-600 text-center max-w-2xl mb-8" data-aos="fade-up" data-aos-delay="200">
           A results-driven agency helping modern brands grow with innovative strategy, branding, and marketing solutions tailored for today's digital landscape.
         </p>
+        <div className="relative z-50">
         <button
   onClick={() => setShowForm(!showForm)}
   className="hero-button bg-gradient-to-r from-purple-500 to-yellow-400 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transform transition-all duration-500"
 >
   Let's Collaborate
 </button>
+</div>
 
 {showForm && (
   <div 
