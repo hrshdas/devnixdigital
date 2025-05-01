@@ -36,7 +36,7 @@ export default function HomePage() {
 >
   Let's Collaborate
 </button>
-</div>
+
 
 {showForm && (
   <div 
@@ -81,6 +81,7 @@ export default function HomePage() {
     </form>
   </div>
 )}
+</div>
 
 
 
