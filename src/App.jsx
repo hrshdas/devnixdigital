@@ -4,12 +4,13 @@ import HomePage from './pages/HomePage';
 
 function App() {
   useEffect(() => {
-    document.title = "Devnix Digital"; // Set your tab title here
+    document.title = "Devnix Digital";
   }, []);
 
   return (
     <div>
       <HomePage />
+    
     </div>
   );
 }

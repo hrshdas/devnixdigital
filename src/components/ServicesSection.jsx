@@ -13,7 +13,7 @@ const services = [
   },
   {
     title: "UI/UX & Web Design",
-    description: "Smooth, intuitive digital experiences your users love.",
+    description: "Smooth, intui digital experiences your users love.",
     icon: "🖌️"
   },
   {

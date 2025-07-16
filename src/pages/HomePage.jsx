@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
+import PlansSection from '../components/PlansSection';
 import { BarChart3, Paintbrush, LayoutDashboard, Users2 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import logo from '../assets/logo.png';
 
 export default function HomePage() {
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-  }, []);
+useEffect(() => {
+  AOS.init({
+    duration: 1000,          // Animation duration in ms
+    easing: 'ease-in-out',   // Smooth in-out animation
+    once: true,              // Animate only once per element
+    mirror: false,           // No animation on scroll up
+    offset: 100,             // Trigger animation when element is 100px into view
+  });
+}, []);
+
 
   const [showForm, setShowForm] = useState(false);
 
   return (
     <>
     <div>
-    <div className="page-container min-h-screen flex flex-col items-center justify-center px-6 py-12 bg-gradient-to-r from-yellow-100 via-white to-purple-100">
+    <div className="page-container w-full max-w-full overflow-hidden min-h-screen flex flex-col items-center justify-center px-6 py-12 bg-gradient-to-r from-yellow-100 via-white to-purple-100">
     <div className="absolute top-0 left-0 w-full h-full bg-[url('/path-to-pattern.svg')] bg-no-repeat bg-center opacity-10 pointer-events-none" />
     <div className="logo-container">
   <img src={logo} alt="DevNix Logo" className="logo" />
@@ -147,6 +155,9 @@ export default function HomePage() {
   </div>
 </section>
 
+<PlansSection />
+
+
 
 {/* Client Showcases Section */}
 <section className="clients-section py-20">
@@ -199,6 +210,53 @@ export default function HomePage() {
 
 
     </div>
+    <footer className="bg-gradient-to-r from-yellow-100 via-white to-purple-100 py-8 mt-20">
+  <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-gray-700">
+    <p className="text-center sm:text-left text-sm font-medium mb-4 sm:mb-0">
+      © {new Date().getFullYear()} Devnix Digital. All rights reserved.
+    </p>
+
+    <div className="flex items-center space-x-6">
+      {/* Email */}
+      <a
+        href="mailto:devnixdigital@gmail.com"
+        className="flex items-center space-x-2 hover:text-purple-600 transition"
+      >
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v1l-10 6L2 5V4zm0 3.236l10 6 10-6V20a2 2 0 01-2 2H4a2 2 0 01-2-2V7.236z" />
+        </svg>
+        <span className="text-sm">devnixdigital@gmail.com</span>
+      </a>
+
+      {/* Instagram */}
+      <a
+        href="https://instagram.com/devnixdigital"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center space-x-2 hover:text-purple-600 transition"
+      >
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.2c3.2 0 3.584.012 4.85.07 1.17.054 1.977.24 2.432.414a4.917 4.917 0 011.774 1.165 4.917 4.917 0 011.165 1.774c.174.455.36 1.262.414 2.432.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.977-.414 2.432a4.917 4.917 0 01-1.165 1.774 4.917 4.917 0 01-1.774 1.165c-.455.174-1.262.36-2.432.414-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.977-.24-2.432-.414a4.917 4.917 0 01-1.774-1.165 4.917 4.917 0 01-1.165-1.774c-.174-.455-.36-1.262-.414-2.432C2.212 15.584 2.2 15.2 2.2 12s.012-3.584.07-4.85c.054-1.17.24-1.977.414-2.432A4.917 4.917 0 013.85 2.944a4.917 4.917 0 011.774-1.165c.455-.174 1.262-.36 2.432-.414C8.416 2.212 8.8 2.2 12 2.2zm0 1.8c-3.132 0-3.494.012-4.726.068-.944.042-1.462.2-1.8.334a3.097 3.097 0 00-1.126.738 3.097 3.097 0 00-.738 1.126c-.134.338-.292.856-.334 1.8C3.412 8.506 3.4 8.868 3.4 12s.012 3.494.068 4.726c.042.944.2 1.462.334 1.8.174.438.424.83.738 1.126.296.314.688.564 1.126.738.338.134.856.292 1.8.334 1.232.056 1.594.068 4.726.068s3.494-.012 4.726-.068c.944-.042 1.462-.2 1.8-.334.438-.174.83-.424 1.126-.738.314-.296.564-.688.738-1.126.134-.338.292-.856.334-1.8.056-1.232.068-1.594.068-4.726s-.012-3.494-.068-4.726c-.042-.944-.2-1.462-.334-1.8a3.097 3.097 0 00-.738-1.126 3.097 3.097 0 00-1.126-.738c-.338-.134-.856-.292-1.8-.334C15.494 4.012 15.132 4 12 4zm0 3.4a4.6 4.6 0 110 9.2 4.6 4.6 0 010-9.2zm0 1.8a2.8 2.8 0 100 5.6 2.8 2.8 0 000-5.6zm5.25-.9a1.05 1.05 0 110 2.1 1.05 1.05 0 010-2.1z" />
+        </svg>
+        <span className="text-sm">@devnixdigital</span>
+      </a>
+
+      {/* LinkedIn */}
+      <a
+        href="https://linkedin.com/in/devnixdigital"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center space-x-2 hover:text-purple-600 transition"
+      >
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8.5h5V24H0V8.5zM8.34 8.5h4.79v2.11h.07c.67-1.27 2.3-2.61 4.74-2.61 5.07 0 6 3.34 6 7.69V24h-5v-7.85c0-1.87-.03-4.27-2.6-4.27-2.61 0-3.01 2.04-3.01 4.14V24h-5V8.5z" />
+        </svg>
+        <span className="text-sm">/devnixdigital</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
     </>
   );
 }
