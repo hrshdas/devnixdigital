@@ -210,13 +210,15 @@ useEffect(() => {
 
 
     </div>
-    <footer className="bg-gradient-to-r from-yellow-100 via-white to-purple-100 py-8 mt-20">
-  <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-gray-700">
-    <p className="text-center sm:text-left text-sm font-medium mb-4 sm:mb-0">
-      © {new Date().getFullYear()} Devnix Digital. All rights reserved.
+<footer className="bg-gradient-to-r from-yellow-100 via-white to-purple-100 py-8 mt-20">
+  <div className="max-w-7xl mx-auto px-6 text-gray-700 text-center flex flex-col items-center">
+    {/* Copyright */}
+    <p className="text-sm font-medium mb-6">
+      © {new Date().getFullYear()} <strong>Devnix Digital</strong>. All rights reserved.
     </p>
 
-    <div className="flex items-center space-x-6">
+    {/* Contact Links */}
+    <div className="flex flex-col items-center space-y-4">
       {/* Email */}
       <a
         href="mailto:devnixdigital@gmail.com"
@@ -256,6 +258,7 @@ useEffect(() => {
     </div>
   </div>
 </footer>
+
 
     </>
   );
