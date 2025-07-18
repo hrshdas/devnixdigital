@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 import PlansSection from '../components/PlansSection';
 import { BarChart3, Paintbrush, LayoutDashboard, Users2 } from "lucide-react";
 import AOS from "aos";
@@ -213,28 +214,25 @@ return (
       </a>
 
       <a
-        href="https://instagram.com/devnixdigital"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center space-x-2 hover:text-purple-600 transition"
-      >
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="... (Instagram SVG path)" />
-        </svg>
-        <span className="text-sm">@devnixdigital</span>
-      </a>
+  href="https://instagram.com/devnixdigital"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center space-x-2 hover:text-purple-600 transition"
+>
+  <FaInstagram className="w-5 h-5" />
+  <span className="text-sm">@devnixdigital</span>
+</a>
 
       <a
-        href="https://linkedin.com/in/devnixdigital"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center space-x-2 hover:text-purple-600 transition"
-      >
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="... (LinkedIn SVG path)" />
-        </svg>
-        <span className="text-sm">/devnixdigital</span>
-      </a>
+  href="https://linkedin.com/in/devnixdigital"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center space-x-2 hover:text-blue-600 transition"
+>
+  <FaLinkedin className="w-5 h-5" />
+  <span className="text-sm">@devnixdigital</span>
+</a>
+
     </div>
   </div>
 </footer>
