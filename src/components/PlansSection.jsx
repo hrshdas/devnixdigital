@@ -110,61 +110,62 @@ const PlansSection = () => {
         </div>
 
         {/* Form Modal */}
-        {showForm && (
-          <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4">
-            <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl relative">
-              <button
-                onClick={closeForm}
-                className="absolute top-2 right-3 text-gray-500 hover:text-black text-xl font-bold"
-              >
-                ×
-              </button>
-              <h3 className="text-2xl font-bold mb-4 text-center text-gray-800">
-                Get Started with {selectedPlan}
-              </h3>
-              <form
-                action="https://formspree.io/f/mvgazvle" // replace with your actual Formspree form URL
-                method="POST"
-                className="space-y-4"
-              >
-                <input
-                  type="hidden"
-                  name="Selected Plan"
-                  value={selectedPlan}
-                />
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  pattern="[0-9]{10}"
-                  maxLength="10"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                />
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-400 text-white font-semibold py-3 rounded-xl shadow-md hover:scale-105 transition-transform"
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
+{showForm && (
+  <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4">
+    <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-sm sm:max-w-md w-full shadow-2xl relative">
+      <button
+        onClick={closeForm}
+        className="absolute top-2 right-3 text-gray-500 hover:text-black text-2xl font-bold"
+      >
+        ×
+      </button>
+      <h3 className="text-xl sm:text-2xl font-bold mb-5 text-center text-gray-800">
+        Get Started with {selectedPlan}
+      </h3>
+      <form
+        action="https://formspree.io/f/mvgazvle"
+        method="POST"
+        className="space-y-4"
+      >
+        <input
+          type="hidden"
+          name="Selected Plan"
+          value={selectedPlan}
+        />
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          pattern="[0-9]{10}"
+          maxLength="10"
+          required
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          required
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+        />
+        <button
+          type="submit"
+          className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-400 text-white font-semibold py-3 text-base sm:text-lg rounded-xl shadow-md hover:scale-105 transition-transform"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+)}
+
       </div>
     </section>
   );
