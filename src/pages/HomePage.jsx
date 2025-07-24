@@ -92,7 +92,7 @@ return (
 
 {/* Background Blobs */}
 <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-purple-300 opacity-30 blur-3xl rounded-full z-0 animate-pulse"/>
-<div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-yellow-300 opacity-30 blur-3xl pointer-events-none" />
+<div className="absolute bottom-[-0px] right-[-100px] w-[400px] h-[400px] bg-yellow-300 opacity-30 blur-3xl pointer-events-none" />
 </div>
 
 {/* Services Section */}
