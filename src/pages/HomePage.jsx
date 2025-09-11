@@ -333,24 +333,24 @@ export default function HomePage() {
 
         {/* Enhanced Contact Form Modal */}
         {showForm && (
-          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-4">
-            <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative transform animate-scale-in border border-gray-100">
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-8 max-w-xs sm:max-w-md w-full shadow-2xl relative transform animate-scale-in border border-gray-100">
               <button
                 onClick={() => setShowForm(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold transition-colors hover:rotate-90 duration-300"
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 text-lg sm:text-2xl font-bold transition-colors hover:rotate-90 duration-300"
               >
                 ×
               </button>
               
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  <Star className="w-8 h-8 text-white animate-pulse" />
+              <div className="text-center mb-4 sm:mb-8">
+                <div className="w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-4 shadow-lg">
+                  <Star className="w-5 h-5 sm:w-8 sm:h-8 text-white animate-pulse" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">Start Your Project</h3>
-                <p className="text-gray-600">Let's bring your vision to life</p>
+                <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">Start Your Project</h3>
+                <p className="text-xs sm:text-base text-gray-600">Let's bring your vision to life</p>
               </div>
               
-              <form action="https://formspree.io/f/mvgazvle" method="POST" className="space-y-6">
+              <form action="https://formspree.io/f/mvgazvle" method="POST" className="space-y-3 sm:space-y-6">
                 <div className="relative">
                   <input 
                     type="text" 
@@ -394,30 +394,19 @@ export default function HomePage() {
                 </div>
                 <button 
                   type="submit" 
-                  className="group relative w-full bg-white/20 backdrop-blur-xl border border-white/40 text-gray-800 hover:text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                  className="group relative w-full bg-white/20 backdrop-blur-xl border border-white/40 text-gray-800 hover:text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
                 >
-                  {/* Enhanced Glass button background */}
+                  {/* Simplified Glass button background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/15 to-white/30 backdrop-blur-xl rounded-2xl"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500/90 to-yellow-400/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm rounded-2xl"></div>
                   
                   {/* Glass reflection */}
                   <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent opacity-70 rounded-t-2xl"></div>
                   
-                  {/* Glass border enhancement */}
-                  <div className="absolute inset-[1px] bg-white/10 rounded-2xl backdrop-blur-xl"></div>
-                  
                   <span className="relative z-10 flex items-center justify-center">
                     Send Inquiry
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
-                  
-                  {/* Enhanced Glass shine effect */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-white/30 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  
-                  {/* Enhanced floating glass particles */}
-                  <div className="absolute top-2 right-3 w-2 h-2 bg-white/50 backdrop-blur-md rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-150 border border-white/30"></div>
-                  <div className="absolute bottom-2 left-3 w-1.5 h-1.5 bg-white/40 backdrop-blur-md rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 border border-white/25"></div>
-                  <div className="absolute top-1/2 left-1/4 w-1.5 h-1.5 bg-white/35 backdrop-blur-md rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 delay-200"></div>
                 </button>
               </form>
             </div>
