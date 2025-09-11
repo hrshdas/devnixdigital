@@ -2,14 +2,310 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom animations and utilities */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.5s ease-out;
+}
+
+/* Global styles */
 body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   width: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
+body {
+  -webkit-overflow-scrolling: touch;
+  @apply text-gray-800 bg-white;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #a855f7, #facc15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #9333ea, #eab308);
+}
+
+/* Enhanced typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+  line-height: 1.2;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button enhancements */
+.btn-primary {
+  @apply bg-gradient-to-r from-purple-500 to-yellow-400 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply text-gray-700 font-medium px-6 py-3 rounded-full border-2 border-gray-200 hover:border-purple-300 hover:text-purple-600 transition-all duration-300;
+}
+
+/* Card enhancements */
+.card {
+  @apply bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100;
+}
+
+.card-hover {
+  @apply hover:-translate-y-2;
+}
+
+/* Form enhancements */
+.form-input {
+  @apply w-full border-2 border-gray-200 rounded-xl py-4 px-6 text-lg focus:outline-none focus:ring-4 focus:ring-purple-200 focus:border-purple-400 transition-all duration-300;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+}
+
+/* Navigation enhancements */
+nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Section spacing */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Trust indicators animation */
+.trust-indicator {
+  @apply transition-all duration-300 hover:scale-110;
+}
+
+/* Service card icons */
+.service-icon-wrapper {
+  @apply w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 transition-transform duration-300;
+}
+
+.service-icon-wrapper:hover {
+  @apply scale-110;
+}
+
+/* Showcase hover effects */
+.showcase-item {
+  @apply transition-all duration-500 hover:scale-105;
+}
+
+.showcase-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.showcase-item:hover .showcase-overlay {
+  @apply opacity-100;
+}
+
+/* Footer enhancements */
+.social-icon {
+  @apply w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300;
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+  .hero-title {
+    @apply text-4xl;
+  }
+  
+  .hero-subtitle {
+    @apply text-lg;
+  }
+  
+  .service-grid {
+    @apply grid-cols-1 gap-6;
+  }
+  
+  .trust-grid {
+    @apply grid-cols-2 gap-4;
+  }
+}
+
+/* Loading states */
+.loading {
+  @apply animate-pulse;
+}
+
+/* Focus states for accessibility */
+.focus-visible:focus {
+  @apply outline-none ring-4 ring-purple-200 ring-offset-2;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Text selection */
+::selection {
+  background-color: rgba(168, 85, 247, 0.2);
+  color: #1f2937;
+}
+
+::-moz-selection {
+  background-color: rgba(168, 85, 247, 0.2);
+  color: #1f2937;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-gradient {
+    -webkit-text-fill-color: initial;
+    background: none;
+    color: #1f2937;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support (future enhancement) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here in the future */
+}
+
+/* Legacy browser support */
+.no-backdrop-filter nav {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Custom utilities */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backdrop-blur-strong {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Logo container */
 .logo-container {
   position: absolute;
   top: 0;
@@ -21,11 +317,13 @@ body, html {
   padding: 10px; /* Optional: adds a little breathing room */
 }
 
+/* Logo */
 .logo {
   height: 90px; /* Adjusted to a more reasonable size */
   width: auto;
 }
 
+/* Logo text */
 .logo-text {
   font-size: 1.5rem;
   font-weight: 600;
@@ -33,6 +331,7 @@ body, html {
   font-family: 'Poppins', sans-serif;
 }
 
+/* Page wrapper */
 .page-wrapper {
   position: relative;
   height: 100vh;
@@ -40,41 +339,7 @@ body, html {
   overflow: hidden;
 }
 
-@media (max-width: 600px) {
-  .logo {
-    height: 45px;
-  }
-
-  .logo-text {
-    font-size: 1.2rem;
-  }
-}
-
-
-html {
-  scroll-behavior: smooth;
-}
-.page-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Reset & Global Styles */
-body {
-  @apply m-0 font-sans text-gray-800 bg-white overflow-y-scroll scroll-smooth;
-}
-
-section {
-  scroll-snap-align: start;
-}
-
-/* Hero Section */
+/* Hero section */
 .hero-section {
   width: 100%;
   min-height: 100vh;
@@ -88,6 +353,8 @@ section {
   padding: 0 1rem;
   box-sizing: border-box;
 }
+
+/* Hero button */
 .hero-button {
   background: linear-gradient(to right, #a855f7, #facc15);
   position: relative;
@@ -105,8 +372,7 @@ section {
   box-shadow: 0px 4px 20px rgba(168, 85, 247, 0.5);
 }
 
-
-
+/* Hero */
 .hero {
   @apply flex flex-col items-center justify-center text-center py-24 px-6;
   background: linear-gradient(to right, #fef9c3, #ffffff, #f3e8ff);
@@ -122,6 +388,7 @@ section {
   }
 }
 
+/* Gradient text */
 .gradient-text {
   background: linear-gradient(to right, #7c3aed, #ec4899, #facc15);
   background-size: 200% auto;
@@ -131,31 +398,13 @@ section {
   animation: gradientShift 4s ease-in-out infinite;
 }
 
-@keyframes gradientShift {
-  0% { background-position: left; }
-  50% { background-position: right; }
-  100% { background-position: left; }
-}
-
+/* Hero paragraph */
 .hero p {
   @apply text-gray-600 text-lg max-w-xl mb-8;
   animation: fadeIn 0.8s ease-in-out forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.hero button {
-  background: linear-gradient(to right, #7c3aed, #facc15);
-  @apply text-white py-3 px-8 rounded-full font-semibold shadow-md cursor-pointer transition-transform duration-200 ease-in-out;
-}
-
-.hero button:hover {
-  @apply scale-105 shadow-lg;
-}
-
+/* Project form */
 .project-form {
   @apply mt-8 bg-white p-8 rounded-2xl shadow-xl max-w-xl w-full transition-all duration-700 ease-in-out;
 }
@@ -177,7 +426,7 @@ section {
   @apply bg-purple-800;
 }
 
-/* Services Section */
+/* Services section */
 .services {
   @apply py-20 px-6;
 }
@@ -222,7 +471,7 @@ section {
   @apply text-gray-600 leading-relaxed;
 }
 
-/* Client Showcases */
+/* Client section */
 .client-section {
   @apply py-20 px-6;
   background: linear-gradient(to bottom, #f3e8ff, #ffffff, #fef9c3);
@@ -295,10 +544,3 @@ section {
 .animate-slideDown {
   animation: slideDown 0.6s ease-out;
 }
-
-body {
-  overflow-x: hidden;
-}
-
-
-
