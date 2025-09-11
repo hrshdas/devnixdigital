@@ -15,19 +15,18 @@ export default function HomePage() {
       offset: 100,
     });
 
-    // Check for saved theme preference or system preference - default to light mode
+    // Check for saved theme preference - default to light mode always
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     let shouldUseDark = false;
     
-    if (savedTheme) {
-      shouldUseDark = savedTheme === 'dark';
-    } else if (systemPrefersDark) {
+    // Only use dark mode if user has explicitly saved it
+    if (savedTheme === 'dark') {
       shouldUseDark = true;
-      localStorage.setItem('theme', 'dark');
     } else {
+      // Default to light mode and save it
       localStorage.setItem('theme', 'light');
+      shouldUseDark = false;
     }
     
     setIsDarkMode(shouldUseDark);
