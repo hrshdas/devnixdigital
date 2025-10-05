@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 import PlansSection from '../components/PlansSection';
 import { BarChart3, Paintbrush, LayoutDashboard, Users2, Menu, X, ArrowRight, Star, CheckCircle, Quote, Moon, Sun } from "lucide-react";
@@ -7,6 +8,9 @@ import "aos/dist/aos.css";
 import logo from '../assets/logo.png';
 
 export default function HomePage() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -14,6 +18,16 @@ export default function HomePage() {
       mirror: false,
       offset: 100,
     });
+
+    // Handle navigation from service pages
+    if (location.state?.scrollTo) {
+      setTimeout(() => {
+        const element = document.getElementById(location.state.scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
 
     // Check for saved theme preference - default to light mode always
     const savedTheme = localStorage.getItem('theme');
@@ -231,14 +245,14 @@ export default function HomePage() {
                         setShowForm(true);
                         setIsMenuOpen(false);
                       }}
-                      className="group relative w-full bg-gradient-to-r from-purple-500 to-yellow-400 text-white font-bold px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden dark:bg-gradient-to-r dark:from-purple-600 dark:to-yellow-500 dark:shadow-purple-500/25"
+                      className="group relative w-full bg-gradient-to-r from-purple-500 to-yellow-500 text-white font-bold px-6 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden dark:bg-gradient-to-r dark:from-purple-600 dark:to-yellow-500 dark:shadow-purple-500/25"
                     >
                       {/* Enhanced glass background for CTA */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 to-yellow-500/90 backdrop-blur-xl rounded-xl dark:bg-gradient-to-r dark:from-purple-700/90 dark:to-yellow-600/90"></div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm rounded-xl dark:bg-gradient-to-r dark:from-white/15 dark:to-white/5"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 to-yellow-500/90 backdrop-blur-xl rounded-full dark:bg-gradient-to-r dark:from-purple-700/90 dark:to-yellow-600/90"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm rounded-full dark:bg-gradient-to-r dark:from-white/15 dark:to-white/5"></div>
                       
                       {/* Enhanced Glass reflection for CTA */}
-                      <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent opacity-60 rounded-t-xl dark:bg-gradient-to-b dark:from-white/25 dark:to-transparent dark:opacity-40"></div>
+                      <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent opacity-60 rounded-t-full dark:bg-gradient-to-b dark:from-white/25 dark:to-transparent dark:opacity-40"></div>
                       
                       <span className="relative z-10 text-lg font-bold">Get Started</span>
                     </button>
@@ -267,7 +281,7 @@ export default function HomePage() {
                 Driving <span className="bg-gradient-to-r from-purple-600 to-yellow-500 bg-clip-text text-transparent dark:text-gray-200">Results</span> Through
                 <br />Digital Innovation
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto dark:text-gray-300">
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto dark:text-gray-300">
                 Transform your brand with data-driven strategies, creative excellence, and cutting-edge digital solutions that deliver measurable growth.
               </p>
             </div>
@@ -292,7 +306,7 @@ export default function HomePage() {
                 className="group bg-white/80 backdrop-blur-sm text-gray-700 font-semibold px-8 py-4 rounded-full border-2 border-gray-200 hover:border-purple-300 hover:text-purple-600 hover:bg-white transition-all duration-300 flex items-center dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               >
                 View Our Work
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>
 
@@ -322,7 +336,7 @@ export default function HomePage() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 dark:text-white">
                 Our <span className="bg-gradient-to-r from-purple-600 to-yellow-500 bg-clip-text text-transparent dark:text-gray-200">Expertise</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto dark:text-gray-300">
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Comprehensive digital solutions designed to accelerate your business growth and maximize your online presence.
               </p>
             </div>
@@ -333,39 +347,44 @@ export default function HomePage() {
                   title: "Performance Marketing",
                   desc: "Data-driven campaigns that deliver measurable ROI and sustainable growth.",
                   icon: <BarChart3 className="w-8 h-8" />,
-                  color: "from-purple-600 to-purple-700",
-                  bgColor: "from-purple-500/5 to-purple-600/10",
+                  color: "from-purple-400 to-purple-500",
+                  bgColor: "from-purple-300/5 to-purple-400/10",
                   borderColor: "border-purple-200/30",
-                  features: ["PPC Campaigns", "SEO Optimization", "Analytics & Reporting"]
+                  features: ["PPC Campaigns", "SEO Optimization", "Analytics & Reporting"],
+                  link: "/services/performance-marketing"
                 },
                 {
                   title: "Creative Design",
                   desc: "Compelling visuals that tell your brand story and captivate your audience.",
                   icon: <Paintbrush className="w-8 h-8" />,
-                  color: "from-yellow-500 to-yellow-600",
-                  bgColor: "bg-yellow-50",
-                  features: ["Brand Identity", "Graphic Design", "Video Production"]
+                  color: "from-yellow-300 to-yellow-400",
+                  bgColor: "bg-yellow-100/50",
+                  features: ["Brand Identity", "Graphic Design", "Video Production"],
+                  link: "/services/creative-design"
                 },
                 {
                   title: "UI/UX & Web Design",
                   desc: "Intuitive digital experiences that convert visitors into loyal customers.",
                   icon: <LayoutDashboard className="w-8 h-8" />,
-                  color: "from-pink-500 to-pink-600",
-                  bgColor: "bg-pink-50",
-                  features: ["Web Development", "Mobile Apps", "User Research"]
+                  color: "from-pink-300 to-pink-400",
+                  bgColor: "bg-pink-100/50",
+                  features: ["Web Development", "Mobile Apps", "User Research"],
+                  link: "/services/ui-ux-design"
                 },
                 {
                   title: "Social Media Management",
                   desc: "Strategic content that builds communities and drives engagement.",
                   icon: <Users2 className="w-8 h-8" />,
-                  color: "from-indigo-500 to-indigo-600",
-                  bgColor: "bg-indigo-50",
-                  features: ["Content Strategy", "Community Management", "Influencer Marketing"]
+                  color: "from-blue-300 to-blue-400",
+                  bgColor: "bg-blue-100/50",
+                  features: ["Content Strategy", "Community Management", "Influencer Marketing"],
+                  link: "/services/social-media"
                 },
               ].map((service, i) => (
-                <div
+                <Link
                   key={i}
-                  className={`group relative p-8 rounded-2xl backdrop-blur-xl bg-white/30 border border-white/20 shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer hover:scale-[1.02] dark:bg-gray-800 dark:border-gray-700`}
+                  to={service.link}
+                  className={`group relative p-8 rounded-2xl backdrop-blur-xl bg-white/30 border border-white/20 shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer hover:scale-[1.02] dark:bg-gray-800 dark:border-gray-700 block`}
                   data-aos="fade-up"
                   data-aos-delay={i * 150}
                 >
@@ -373,7 +392,7 @@ export default function HomePage() {
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.bgColor} backdrop-blur-sm dark:bg-gray-700`}></div>
                   
                   {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   {/* Content */}
                   <div className="relative z-10">
@@ -394,9 +413,324 @@ export default function HomePage() {
                         </li>
                       ))}
                     </ul>
+                    
+                    {/* Learn More Arrow */}
+                    <div className="mt-6 flex items-center text-purple-600 font-semibold group-hover:text-purple-700 transition-colors">
+                      <span className="mr-2">Learn More</span>
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <PlansSection />
+
+        {/* Enhanced Portfolio Section */}
+        <section id="portfolio" className="py-32 bg-gray-50 dark:bg-gray-900">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-20" data-aos="fade-up">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 dark:text-white">
+                Our <span className="bg-gradient-to-r from-purple-600 to-yellow-500 bg-clip-text text-transparent">Client Showcase</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12 dark:text-gray-300">
+                Explore our portfolio of successful projects and see how we've transformed businesses across different industries.
+              </p>
+            </div>
+
+            {/* Responsive Client Showcase Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20 max-w-4xl mx-auto">
+              
+              {/* Left Section - Food & Restaurant Clients */}
+              <div 
+                className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+                onClick={() => navigate('/client/food-restaurant-portfolio')}
+                style={{
+                  filter: 'drop-shadow(0 10px 25px rgba(147, 51, 234, 0.15))',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.filter = 'drop-shadow(0 20px 40px rgba(147, 51, 234, 0.4))';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.filter = 'drop-shadow(0 10px 25px rgba(147, 51, 234, 0.15))';
+                }}
+                data-aos="fade-right"
+              >
+                <div className="aspect-[3/4] relative bg-white rounded-2xl overflow-hidden shadow-xl">
+                  {/* Single Logo Image */}
+                  <img
+                    src="/images/momomagiccafe.png"
+                    alt="Food & Restaurant Portfolio"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-yellow-800/95 via-yellow-500/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Center Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform scale-75 group-hover:scale-100 transition-transform duration-500">
+                      <img 
+                        src="/images/momomagiccentreicon.png" 
+                        alt="Momo Magic Cafe Logo" 
+                        className="w-12 h-12 object-contain rounded-full"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Hover Popup */}
+                  <div className="absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <div className="bg-white/95 backdrop-blur-sm p-4 m-4 rounded-xl shadow-2xl">
+                      <h4 className="font-bold text-gray-900 text-lg mb-1">Food & Restaurant Clients</h4>
+                      <p className="text-yellow-600 text-sm font-medium mb-2">Complete Portfolio Collection</p>
+                      <div className="flex items-center text-yellow-600">
+                        <span className="text-xs font-semibold">View Full Portfolio</span>
+                        <ArrowRight className="w-3 h-3 ml-1" />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Right Section - Tech & Electronics Repair Clients */}
+              <div 
+                className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+                onClick={() => navigate('/client/tech-electronics-portfolio')}
+                style={{
+                  filter: 'drop-shadow(0 10px 25px rgba(59, 130, 246, 0.15))',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.filter = 'drop-shadow(0 20px 40px rgba(59, 130, 246, 0.4))';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.filter = 'drop-shadow(0 10px 25px rgba(59, 130, 246, 0.15))';
+                }}
+                data-aos="fade-left"
+              >
+                <div className="aspect-[3/4] relative bg-white rounded-2xl overflow-hidden shadow-xl">
+                  {/* Single Logo Image */}
+                  <img
+                    src="/images/maxiple.png"
+                    alt="Tech & Electronics Portfolio"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Center Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover:scale-100 transition-transform duration-500">
+                      <img 
+                        src="/images/maxiplecentreicon.png" 
+                        alt="Maxiple Tech Logo" 
+                        className="w-12 h-12 object-contain rounded-full"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Hover Popup */}
+                  <div className="absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <div className="bg-white/95 backdrop-blur-sm p-4 m-4 rounded-xl shadow-2xl">
+                      <h4 className="font-bold text-gray-900 text-lg mb-1">Tech & Electronics Clients</h4>
+                      <p className="text-blue-600 text-sm font-medium mb-2">Complete Portfolio Collection</p>
+                      <div className="flex items-center text-blue-600">
+                        <span className="text-xs font-semibold">View Full Portfolio</span>
+                        <ArrowRight className="w-3 h-3 ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="text-center" data-aos="fade-up">
+              <div className="bg-white dark:bg-gray-800 rounded-3xl p-12 shadow-xl">
+                <h3 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
+                  Ready to Join Our Success Stories?
+                </h3>
+                <p className="text-xl text-gray-600 mb-8 dark:text-gray-300">
+                  Let's create something amazing for your business
+                </p>
+                <button
+                  onClick={() => setShowForm(true)}
+                  className="group relative bg-gradient-to-r from-purple-600 to-yellow-500 text-white font-bold px-12 py-4 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                >
+                  {/* Glass background for button */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 to-yellow-500/90 backdrop-blur-xl rounded-full"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm rounded-full"></div>
+                  
+                  {/* Glass reflection */}
+                  <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent opacity-60 rounded-t-full"></div>
+                  
+                  <span className="relative z-10 text-xl font-bold flex items-center justify-center">
+                    Start Your Project
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Lead Capture Form Section */}
+        <section className="py-32 bg-gray-50 dark:bg-gray-900 relative">
+          <div className="max-w-4xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-16" data-aos="fade-up">
+              <div className="inline-block px-6 py-3 bg-gradient-to-r from-purple-500 to-yellow-500 text-white rounded-full text-sm font-semibold mb-6">
+                Limited Time Offer
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-yellow-500 bg-clip-text text-transparent mb-6 dark:from-purple-400 dark:via-purple-500 dark:to-yellow-400">
+                Apply for Your Free Shoot
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                We are offering a complimentary first shoot. Fill the form to claim your free session.
+              </p>
+            </div>
+
+            <div className="max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="200">
+              {/* Glassmorphism Form Container */}
+              <div className="relative">
+                {/* Glass Background */}
+                <div className="absolute inset-0 bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-gray-700/30 shadow-2xl"></div>
+                
+                {/* Gradient Border Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-yellow-500/20 rounded-3xl blur-sm"></div>
+                
+                <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-10 border border-white/30 dark:border-gray-700/30 shadow-2xl">
+                  <form 
+                    action="https://formspree.io/f/xeoralnr"
+                    method="POST"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const formData = new FormData(e.target);
+                      const name = formData.get('fullName');
+                      const phone = formData.get('phoneNumber');
+                      
+                      // Validation
+                      if (!name || !phone) {
+                        alert('Please fill in all required fields.');
+                        return;
+                      }
+                      
+                      if (!/^\d+$/.test(phone)) {
+                        alert('Please enter a valid phone number (numbers only).');
+                        return;
+                      }
+                      
+                      if (phone.length !== 10) {
+                        alert('Please enter a 10-digit phone number.');
+                        return;
+                      }
+                      
+                      // Submit to Formspree
+                      fetch(e.target.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                          'Accept': 'application/json'
+                        }
+                      }).then(response => {
+                        if (response.ok) {
+                          alert('Thank you! We will contact you soon for your free shoot.');
+                          e.target.reset();
+                        } else {
+                          alert('There was a problem submitting your form. Please try again.');
+                        }
+                      }).catch(error => {
+                        alert('There was a problem submitting your form. Please try again.');
+                      });
+                    }}
+                    className="space-y-8"
+                  >
+                    {/* Full Name Field */}
+                    <div className="group">
+                      <label htmlFor="fullName" className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-3 group-focus-within:text-purple-600 dark:group-focus-within:text-purple-400 transition-colors duration-300">
+                        Full Name *
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          id="fullName"
+                          name="fullName"
+                          required
+                          className="w-full px-6 py-4 rounded-2xl border-2 border-gray-300/50 dark:border-gray-500/50 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 text-lg"
+                          placeholder="Enter your full name"
+                        />
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/10 to-yellow-500/10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                      </div>
+                    </div>
+
+                    {/* Phone Number Field */}
+                    <div className="group">
+                      <label htmlFor="phoneNumber" className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-3 group-focus-within:text-purple-600 dark:group-focus-within:text-purple-400 transition-colors duration-300">
+                        Phone Number *
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="tel"
+                          id="phoneNumber"
+                          name="phoneNumber"
+                          required
+                          pattern="[0-9]+"
+                          maxLength="10"
+                          className="w-full px-6 py-4 rounded-2xl border-2 border-gray-300/50 dark:border-gray-500/50 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 text-lg"
+                          placeholder="Enter your phone number"
+                        />
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/10 to-yellow-500/10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                      </div>
+                    </div>
+
+                    {/* Hidden field for form identification */}
+                    <input type="hidden" name="_subject" value="New Free Shoot Application - DevNix Digital" />
+                    <input type="hidden" name="_next" value={window.location.href} />
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      className="group relative w-full bg-gradient-to-r from-purple-600 to-yellow-500 text-white font-bold px-12 py-4 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                    >
+                      {/* Glass background for button */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 to-yellow-500/90 backdrop-blur-xl rounded-full"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm rounded-full"></div>
+                      
+                      {/* Glass reflection */}
+                      <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent opacity-60 rounded-t-full"></div>
+                      
+                      <span className="relative z-10 text-xl font-bold flex items-center justify-center">
+                        Apply Now
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              {/* Enhanced Trust Indicators */}
+              <div className="mt-6 pt-6 border-t border-gray-300/30 dark:border-gray-600/30">
+                <div className="relative">
+                  {/* Glass Background for Trust Indicators */}
+                  <div className="absolute inset-0 bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-gray-700/30"></div>
+                  
+                  <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl p-6 border border-white/30 dark:border-gray-700/30">
+                    <div className="flex items-center justify-center space-x-8">
+                      {[
+                        { text: "100% Free" },
+                        { text: "No Commitment" },
+                        { text: "Quick Response" }
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center">
+                          <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                          <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">{item.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -416,11 +750,15 @@ export default function HomePage() {
                 <div className="w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-4 shadow-lg dark:bg-gray-600">
                   <Star className="w-5 h-5 sm:w-8 sm:h-8 text-white animate-pulse" />
                 </div>
-                <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-1 sm:mb-2 dark:text-white">Start Your Project</h3>
+                <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">Start Your Project</h3>
                 <p className="text-xs sm:text-base text-gray-600 dark:text-gray-300">Let's bring your vision to life</p>
               </div>
               
-              <form action="https://formspree.io/f/mvgazvle" method="POST" className="space-y-3 sm:space-y-6">
+              <form 
+                action="https://formspree.io/f/YOUR_FORM_ID" 
+                method="POST" 
+                className="space-y-3 sm:space-y-6"
+              >
                 <div className="relative">
                   <input 
                     type="text" 
@@ -483,109 +821,6 @@ export default function HomePage() {
           </div>
         )}
 
-        <PlansSection />
-
-        {/* Enhanced Portfolio Section */}
-        <section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16" data-aos="fade-up">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 dark:text-white">
-                Our <span className="bg-gradient-to-r from-purple-600 to-yellow-500 bg-clip-text text-transparent dark:text-gray-200">Portfolio</span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 dark:text-gray-300">
-                Explore our latest work and see how we've helped businesses achieve remarkable digital transformations.
-              </p>
-              
-              {/* Portfolio Categories */}
-              <div className="flex flex-wrap justify-center gap-4 mb-12">
-                {['All Work', 'Videos', 'Design'].map((category, index) => (
-                  <button
-                    key={category}
-                    className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                      activeFilter === category 
-                        ? 'bg-gradient-to-r from-purple-500 to-yellow-400 text-white shadow-lg' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
-                    }`}
-                    onClick={() => setActiveFilter(category)}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Video Portfolio */}
-            {(activeFilter === 'All Work' || activeFilter === 'Videos') && (
-              <div data-aos="fade-up">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center dark:text-white">Video Portfolio</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {[
-                    { title: "Brand Campaign Video", client: "Tech Startup", category: "Marketing" },
-                    { title: "Product Launch", client: "E-commerce Brand", category: "Commercial" },
-                    { title: "Social Media Content", client: "Fashion Brand", category: "Social Media" }
-                  ].map((video, index) => (
-                    <div key={index} className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-500">
-                      <div className="aspect-video bg-gradient-to-br from-purple-100 to-yellow-100 flex items-center justify-center dark:bg-gray-600">
-                        <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                          <div className="w-0 h-0 border-l-[12px] border-l-purple-600 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute bottom-4 left-4 text-white dark:text-gray-200">
-                          <h4 className="font-semibold">{video.title}</h4>
-                          <p className="text-sm opacity-90">{video.category}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Image Portfolio */}
-            {(activeFilter === 'All Work' || activeFilter === 'Design') && (
-              <div data-aos="fade-up">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center dark:text-white">Creative Design Showcase</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {["client-a", "client-b"].map((client) =>
-                    [1, 2, 3, 4].map((n) => (
-                      <div key={`${client}-image-${n}`} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-500">
-                        <img
-                          src={`/images/${client}-image${n}.jpg`}
-                          alt={`${client} design work ${n}`}
-                          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500 dark:brightness-75"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-purple-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="absolute bottom-3 left-3 text-white dark:text-gray-200">
-                            <p className="text-sm font-medium">Client Shoots</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* CTA Section */}
-            <div className="text-center mt-16" data-aos="fade-up">
-              <button
-                onClick={() => setShowForm(true)}
-                className="group relative w-full bg-white/20 backdrop-blur-xl border border-white/40 text-gray-800 hover:text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-              >
-                {/* Simplified Glass button background */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/15 to-white/30 backdrop-blur-xl rounded-2xl dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-700 dark:to-gray-800"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/90 to-yellow-400/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm rounded-2xl dark:bg-gradient-to-r dark:from-gray-600 dark:via-gray-500 dark:to-gray-600"></div>
-                
-                {/* Glass reflection */}
-                <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent opacity-70 rounded-t-2xl dark:bg-gradient-to-b dark:from-gray-700 dark:to-transparent"></div>
-                
-                <span className="relative z-10 text-lg font-bold">Start a Project</span>
-              </button>
-            </div>
-          </div>
-        </section>
-
         {/* Enhanced Footer */}
         <footer className="bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white py-16 dark:bg-gradient-to-br dark:from-black dark:via-gray-900 dark:to-purple-900">
           <div className="max-w-7xl mx-auto px-6">
@@ -602,10 +837,10 @@ export default function HomePage() {
                   Transforming businesses through innovative digital solutions. We're your partners in growth, creativity, and success.
                 </p>
                 <div className="flex space-x-4">
-                  <a href="https://instagram.com/devnixdigital" className="group p-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-pink-500/25 dark:shadow-pink-500/10">
+                  <a href="https://instagram.com/devnixdigital" className="group p-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl hover:scale-110 transition-all duration-300 shadow-lg dark:bg-gray-600">
                     <FaInstagram className="w-5 h-5 text-white" />
                   </a>
-                  <a href="https://linkedin.com/company/devnixdigital" className="group p-3 bg-gradient-to-r from-blue-500 to-blue-700 rounded-xl hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 dark:shadow-blue-500/10">
+                  <a href="https://linkedin.com/company/devnixdigital" className="group p-3 bg-gradient-to-r from-blue-500 to-blue-700 rounded-xl hover:scale-110 transition-all duration-300 shadow-lg dark:bg-gray-600">
                     <FaLinkedin className="w-5 h-5 text-white" />
                   </a>
                 </div>
@@ -615,11 +850,19 @@ export default function HomePage() {
               <div>
                 <h4 className="text-lg font-semibold mb-6 text-yellow-400 dark:text-yellow-300">Services</h4>
                 <ul className="space-y-3">
-                  {['Performance Marketing', 'Creative Design', 'UI/UX Design', 'Social Media Management'].map((service) => (
-                    <li key={service}>
-                      <a href="#services" className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 dark:text-gray-400 dark:hover:text-yellow-300">
-                        {service}
-                      </a>
+                  {[
+                    { name: 'Performance Marketing', path: '/services/performance-marketing' },
+                    { name: 'Creative Design', path: '/services/creative-design' },
+                    { name: 'UI/UX Design', path: '/services/ui-ux-design' },
+                    { name: 'Social Media Management', path: '/services/social-media' }
+                  ].map((service) => (
+                    <li key={service.name}>
+                      <Link
+                        to={service.path}
+                        className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 dark:text-gray-400 dark:hover:text-yellow-300"
+                      >
+                        {service.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>

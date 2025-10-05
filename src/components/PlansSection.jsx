@@ -1,46 +1,81 @@
 import React, { useState } from "react";
+import { Check, X } from "lucide-react";
 
+// Define all services/features
+const services = [
+  { name: "Social Media Handling", key: "socialMedia" },
+  { name: "Number of Shoots (Videos + Photos)", key: "shoots" },
+  { name: "Number of Posts per Month", key: "posts" },
+  { name: "Content Strategy (Creative + Narrative)", key: "contentStrategy" },
+  { name: "DM Management (Replying to Queries & Engagement)", key: "dmManagement" },
+  { name: "Paid Ad Setup (Ad Budget Excluded)", key: "adSetup" },
+  { name: "Paid Ad Campaigns (Number of Campaigns/Month)", key: "adCampaigns" },
+  { name: "Lead Generation via WhatsApp Marketing", key: "whatsappMarketing" },
+  { name: "Dedicated Account Manager", key: "accountManager" },
+  { name: "SEO", key: "seo" },
+  { name: "Direct Contact with Manager (Phone/WhatsApp)", key: "directContact" }
+];
+
+// Define plan features with detailed specifications
 const plans = [
   {
     title: "Starter Plan",
-    features: [
-      "1 social media handling",
-      "Shoots (Videos + Photos)",
-      "7 to 8 Posts/Month",
-      "1 Paid Ad Setup (Ad Budget Excluded)",
-      "SEO",
-    ],
+    price: "₹15,000",
+    period: "/month",
+    description: "Perfect for small businesses starting their digital presence",
+    features: {
+      socialMedia: { included: true, detail: "1 Platform" },
+      shoots: { included: true, detail: "1 shoot" },
+      posts: { included: true, detail: "15 posts" },
+      contentStrategy: { included: true, detail: "Basic" },
+      dmManagement: { included: false, detail: "Not included" },
+      adSetup: { included: false, detail: "Not included" },
+      adCampaigns: { included: false, detail: "Not included" },
+      whatsappMarketing: { included: false, detail: "Not included" },
+      accountManager: { included: false, detail: "Not included" },
+      seo: { included: false, detail: "Not included" },
+      directContact: { included: false, detail: "Not included" }
+    }
   },
   {
     title: "Growth Plan",
+    price: "₹25,000",
+    period: "/month",
+    description: "Ideal for growing businesses ready to scale their marketing",
     ribbon: "Best Value",
-    features: [
-      "2 social media handling",
-      "Shoots (Videos + Photos)",
-      "15 to 16 Posts/Month",
-      "1 Storytelling Reel (Creative, Narrative-Based Content)",
-      "DM Management (Replying to Queries & Engagement in DMs)",
-      "2 Paid Ad Campaigns (Ad Budget Excluded)",
-      "Email and WhatsApp Marketing (1 Campaigns/Month)",
-      "SEO",
-    ],
+    features: {
+      socialMedia: { included: true, detail: "2 Platforms" },
+      shoots: { included: true, detail: "2/month" },
+      posts: { included: true, detail: "30 posts" },
+      contentStrategy: { included: true, detail: "Advanced" },
+      dmManagement: { included: true, detail: "Full support" },
+      adSetup: { included: false, detail: "Advanced setup" },
+      adCampaigns: { included: true, detail: "2 campaigns" },
+      whatsappMarketing: { included: false, detail: "Not included" },
+      accountManager: { included: false, detail: "Shared manager" },
+      seo: { included: true, detail: "Basic SEO" },
+      directContact: { included: true, detail: "Business hours" }
+    }
   },
   {
     title: "Pro Plan",
-    features: [
-      "3 social media handling",
-      "Shoots (Videos + Photos)",
-      "25 to 30 Posts/Month",
-      "2 to 3 Storytelling Reels (Creative, Narrative-Based Content)",
-      "DM Management (Replying to Queries, Lead Nurturing & Engagement in DMs)",
-      "2–3 Event Visits for Shooting Content",
-      "3–4 Paid Ad Campaigns (Ad Budget Excluded)",
-      "Email and WhatsApp Marketing (1 Campaigns/Month)",
-      "Dedicated Account Manager",
-      "We will provide influencer if available at that time (Paid or unpaid)",
-      "SEO",
-    ],
-  },
+    price: "₹45,000",
+    period: "/month",
+    description: "Complete digital marketing solution for established businesses",
+    features: {
+      socialMedia: { included: true, detail: "3+ Platforms" },
+      shoots: { included: true, detail: "4/month" },
+      posts: { included: true, detail: "45 posts" },
+      contentStrategy: { included: true, detail: "Premium" },
+      dmManagement: { included: true, detail: "Priority support" },
+      adSetup: { included: true, detail: "Advanced setup" },
+      adCampaigns: { included: true, detail: "5 campaigns" },
+      whatsappMarketing: { included: true, detail: "Full automation" },
+      accountManager: { included: true, detail: "Dedicated manager" },
+      seo: { included: true, detail: "Advanced SEO" },
+      directContact: { included: true, detail: "24/7 availability" }
+    }
+  }
 ];
 
 const PlansSection = () => {
@@ -115,10 +150,18 @@ const PlansSection = () => {
                   </h3>
                   
                   <ul className="space-y-4 mb-8">
-                    {plan.features.map((feature, featureIndex) => (
+                    {Object.entries(plan.features).map(([key, feature], featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <div className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0 dark:bg-white"></div>
-                        <span className="text-black font-medium leading-relaxed dark:text-gray-200">{feature}</span>
+                        <div className="flex items-center justify-center w-5 h-5 mt-1 mr-3 flex-shrink-0">
+                          {feature.included ? (
+                            <Check className="text-green-500" size={16} />
+                          ) : (
+                            <X className="text-red-500" size={16} />
+                          )}
+                        </div>
+                        <span className="text-black font-medium leading-relaxed dark:text-gray-200">
+                          {services.find(s => s.key === key)?.name}: {feature.included ? feature.detail : 'Not included'}
+                        </span>
                       </li>
                     ))}
                   </ul>
